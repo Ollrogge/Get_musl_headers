@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# https://github.com/archlinux/svntogit-community/blob/packages/kernel-headers-musl/trunk/PKGBUILD
+
+PKG_NAME="linux-headers"
+PKG_VER="4.19.88-1"
+SOURCE="http://ftp.barfooze.de/pub/sabotage/tarballs/$PKG_NAME-$PKG_VER.tar.xz"
+DEST="/usr/lib/musl"
+ARCH="x86_64"
+
+mkdir /tmp/musl_headers
+cd /tmp/musl_headers
+wget $SOURCE
+tar -xf "$PKG_NAME-$PKG_VER.tar.xz"
+cd "$PKG_NAME-$PKG_VER"
+
+make ARCH=$ARCH prefix=$DEST install
+
+
